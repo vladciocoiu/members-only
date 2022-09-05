@@ -16,7 +16,7 @@ router.post('/log-out', authController.logout)
 
 /* REGISTER */
 router.get('/register', authController.registerGet)
-router.post('/register', authController.registerPost)
+router.post('/register', authController.registerValidation, authController.registerPost)
 
 /* JOIN */
 router.get('/join', memberController.joinGet)

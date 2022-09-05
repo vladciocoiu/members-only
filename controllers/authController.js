@@ -3,9 +3,46 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const UserModel = require('../models/userModel');
 
-exports.registerGet = (req, res) => res.render('registerForm');
+const { check, validationResult } = require('express-validator')
 
-exports.registerPost = (req, res, next) => {
+exports.registerGet = (req, res) => res.render('registerForm', { errors: null });
+
+// validate and sanitize form fields using express-validator
+exports.registerValidation = [
+    // validate name
+    check('first-name', 'First name cannot be empty.')
+        .trim()
+        .isLength({ min: 1 })
+        .bail(),
+
+    check('last-name', 'Last name cannot be empty.')
+        .trim()
+        .isLength({ min: 1 })
+        .bail(),
+
+    // validate password
+    check('password', 'Password must be at least 8 characters long, without any whitespaces.')
+        .trim()
+        .isLength({ min: 8 })
+        .bail(),
+
+    // validate confirm-password
+    check('confirm-password', 'Passwords do not match.')
+        .trim()
+        .custom((value, { req }) => value === req.body.password)
+];
+
+exports.registerPost = async (req, res, next) => {
+
+    // handle validation errors
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) return res.status(400).render('registerForm', { errors: errors.array() });
+
+    // error if user already exists
+    const registeredUser = await UserModel.find({ email: req.body.email });
+    if(registeredUser.length) return res.status(400).render('registerForm', { errors: [{ msg: 'User already exists.' }]})
+
+    // store user in database
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         if (err) return next(err);
         const user = new UserModel({
@@ -17,6 +54,7 @@ exports.registerPost = (req, res, next) => {
             if(err) return next(err);
         })
     });
+    
     res.redirect('/');
 };
 
