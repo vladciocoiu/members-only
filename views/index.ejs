@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% if(user) { %>
+      <h1>Welcome Back, <%= user.first_name %></h1>
+      <form action="/log-out" method="POST">
+        <button>Log Out</button>
+      </form>
+      <% if (!user['is_member']) { %><a href="/join">Become a Member</a> <% } %>
+    <% } else { %>
+      <a href="/log-in">Log In</a>
+      <a href="/register">Register</a>
+    <% } %>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  </body>
+</html>
