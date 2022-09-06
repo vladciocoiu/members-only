@@ -42,14 +42,18 @@ exports.registerPost = async (req, res, next) => {
     const registeredUser = await UserModel.find({ email: req.body.email });
     if(registeredUser.length) return res.status(400).render('registerForm', { errors: [{ msg: 'User already exists.' }]})
 
+    // normalize names
+    const firstName = req.body['first-name'][0].toUpperCase() + req.body['first-name'].slice(1).toLowerCase();
+    const lastName = req.body['last-name'][0].toUpperCase() + req.body['last-name'].slice(1).toLowerCase();
+
     // store user in database
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         if (err) return next(err);
         const user = new UserModel({
             email: req.body.email,
             password: hash,
-            first_name: req.body['first-name'],
-            last_name: req.body['last-name']
+            first_name: firstName,
+            last_name: lastName
         }).save(err => {
             if(err) return next(err);
         })

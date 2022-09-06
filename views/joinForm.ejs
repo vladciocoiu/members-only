@@ -7,8 +7,12 @@
     <title>Login</title>
 </head>
 <body>
+    <% if (invalidPasscode) { %>
+        <p>Invalid Passcode.</p>
+    <% } %>
     <h1>Join The Club</h1>
     <form action="" method="POST">
+        <input type="password" name="passcode" placeholder="Passcode" required>
         <button>Join</button>
     </form>
 </body>

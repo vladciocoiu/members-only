@@ -4,6 +4,8 @@ var router = express.Router();
 const indexController = require('../controllers/indexController');
 const authController = require('../controllers/authController');
 const memberController = require('../controllers/memberController');
+const messageController = require('../controllers/messageController');
+
 
 /* HOMEPAGE */
 router.get('/', indexController.index);
@@ -22,6 +24,9 @@ router.post('/register', authController.registerValidation, authController.regis
 router.get('/join', memberController.joinGet)
 router.post('/join', memberController.joinPost)
 
+/* MESSAGE */
+router.get('/message', messageController.get)
+router.post('/message', messageController.post)
 
 
 module.exports = router;

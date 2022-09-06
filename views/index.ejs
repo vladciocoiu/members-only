@@ -11,11 +11,31 @@
         <button>Log Out</button>
       </form>
       <% if (!user['is_member']) { %><a href="/join">Become a Member</a> <% } %>
+
     <% } else { %>
       <a href="/log-in">Log In</a>
       <a href="/register">Register</a>
+      <h2>Log in to see all messages!</h2>
     <% } %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <% if (user) { %>
+      <a href="/message">Create a message</a>
+
+      <section class="messages">
+        <% for (let msg of messages) { %>
+          <article class="message-article">
+            <h3 class="message-title"><%= msg.title %></h3>
+            <p class="message-text"><%= msg.text %></p>
+            <% if (user['is_member']) { %>
+              <p class="message-author"><%= msg.author.first_name + ' ' + msg.author.last_name %></p>
+              <p class="message-date"><%= msg.timestamp.toLocaleString() %> </p>
+            <% } %>
+
+          </article>
+        <% } %>
+      </section>
+    <% } %>
   </body>
 </html>
