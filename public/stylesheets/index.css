@@ -1,0 +1,173 @@
+body {
+  padding-top: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #808F87;
+  overflow-x: hidden;
+}
+
+a {
+  color: #424874;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 10px;
+  position: relative;
+}
+
+a:after {
+  content: "";
+  background-color: #424874;
+  width: 0;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  -webkit-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+a:hover:after {
+  width: 100%;
+}
+
+button {
+  margin: auto;
+  background-color: #414744;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 30px;
+  color: #e1e1e1;
+  font-size: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.app-title {
+  margin: auto;
+  text-align: center;
+}
+
+.login-section {
+  width: 30vw;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "l r" "m m";
+  justify-items: center;
+  grid-gap: 30px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.login-section .login-link {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: l;
+}
+
+.login-section .register-link {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: r;
+}
+
+.login-section .login-message {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: m;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.index-links {
+  margin: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 30px;
+}
+
+.log-out-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.messages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  margin-top: 50px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+}
+
+.messages article {
+  background-color: #c6d0cb;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "t t" "tx tx" "a d";
+  width: 50vw;
+  min-width: 400px;
+  justify-items: center;
+}
+
+.messages article .message-title {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: t;
+  font-size: 18px;
+}
+
+.messages article .message-text {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: tx;
+}
+
+.messages article .message-author {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: a;
+  color: #323232;
+}
+
+.messages article .message-date {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: d;
+  color: #323232;
+}
+/*# sourceMappingURL=index.css.map */

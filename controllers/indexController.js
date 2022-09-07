@@ -11,5 +11,5 @@ exports.index = async(req, res, next) => {
     }
 
     // render view
-    return res.render('index', { title: 'My App', user: req.user, messages: messages });
+    return res.render('index', { user: req.user, messages: messages });
 }
